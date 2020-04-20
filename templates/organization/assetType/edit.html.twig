@@ -1,0 +1,28 @@
+{% extends 'organization/base.html.twig' %}
+
+{% block title %}{{ 'nav.section.organization' | trans }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('asset-type-form') }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'organization.assetType' | trans }} - {{ app.user }}</h1>
+
+    {{ form_start(form, { attr: { id: 'edit-asset-type-form'}}) }}
+
+    {{ form_errors(form) }}
+    <div class="row">
+        {{ form_row(form.name) }}
+        <div class="col-12">
+            {{ form_row(form.properties) }}
+        </div>
+        {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-secondary add-collection-widget" data-list-selector="#asset_type_properties">Ajouter un type de bénévole</button>
+    </div>
+{% endblock %}

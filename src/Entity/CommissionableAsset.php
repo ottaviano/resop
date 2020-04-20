@@ -37,6 +37,12 @@ class CommissionableAsset implements AvailabilitableInterface
     public string $type = '';
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssetType")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    public AssetType $assetType;
+
+    /**
      * @ORM\Column
      * @Assert\NotBlank
      */
@@ -90,6 +96,11 @@ class CommissionableAsset implements AvailabilitableInterface
      * @ORM\Column(type="text", nullable=true)
      */
     public ?string $comments = null;
+
+    /**
+     * @ORM\Column(type="json", nullable=false)
+     */
+    public array $properties = [];
 
     public function __toString(): string
     {

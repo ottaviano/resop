@@ -31,6 +31,7 @@ Encore
     .addEntry('availability-table', './assets/js/availability-table.js')
     .addEntry('availabilitable-list', './assets/js/availabilitable-list.js')
     .addEntry('mission-type-form', './assets/js/mission-type-form.js')
+    .addEntry('asset-type-form', './assets/js/asset-type-form.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

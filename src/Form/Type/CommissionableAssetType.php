@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
+use App\Entity\AssetType;
 use App\Entity\CommissionableAsset;
 use App\Entity\Organization;
 use App\Repository\OrganizationRepository;
@@ -29,6 +30,8 @@ final class CommissionableAssetType extends AbstractType
     {
         /** @var Organization $organization */
         $organization = $builder->getForm()->getData()->organization;
+        /** @var AssetType $assetType */
+        $assetType = $builder->getForm()->getData()->assetType;
 
         $builder
             ->add('type', ChoiceType::class, [
@@ -73,6 +76,7 @@ final class CommissionableAssetType extends AbstractType
             ->add('comments', TextareaType::class, [
                 'label' => 'asset.comments',
             ])
+            ->add('properties', AssetPropertiesType::class, ['inherit_data' => true,'config' => $assetType->properties])
             ->add('submit', SubmitType::class)
         ;
 
@@ -86,6 +90,13 @@ final class CommissionableAssetType extends AbstractType
                     },
                 ]);
             }
+        });
+
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            dump($event->getData()); // properties is ok here but then its not persisted 
+//
+            dump($event->getForm()->getData());
         });
     }
 

@@ -1,0 +1,10 @@
+{% extends 'organization/base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form, { method: 'GET', action: path('app_organization_commissionable_add_asset')}) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}{{ 'organization.assetType' }}{% endblock %}
+
